@@ -119,10 +119,11 @@ def yolo_annotation_tool(images_path, class_names_file, max_windows_size=(1200,7
 
         # if last character of the file is not \n we cant append directly we should add another line 
         # since __write_to_file function writes lists to line inserting an empty string automatically creates a new line
-        temp_file_content = __read_from_file(annotation_file_path)
-        if(temp_file_content):
-            if(temp_file_content[-1][-1] != "\n"):
-                yolo_labels.insert(0,"")
+        if(os.path.exists(annotation_file_path)):
+            temp_file_content = __read_from_file(annotation_file_path)
+            if(temp_file_content):
+                if(temp_file_content[-1][-1] != "\n"):
+                    yolo_labels.insert(0,"")
 
         # write prepared annotations to file
         __write_to_file(yolo_labels, annotation_file_path, write_mode=write_mode)
