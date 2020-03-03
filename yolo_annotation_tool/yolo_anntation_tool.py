@@ -233,6 +233,7 @@ def yolo_annotation_tool(images_path, class_names_file, max_windows_size=(1200,7
         if(label != label_temp):
             image = __refresh_image(image_index, label)
             label_temp = label
+            points = []
 
         # dont refresh the original frame while drawing
         if(not __drawing__):
