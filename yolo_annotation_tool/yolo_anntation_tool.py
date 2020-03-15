@@ -31,10 +31,12 @@ def yolo_annotation_tool(images_path, class_names_file, max_windows_size=(1200,7
     images.sort()
 
     # remove not included files
+    images_temp = []
     for image in images:
         image_name, image_extension = os.path.splitext(image)
-        if image_extension not in image_extensions: 
-            images.remove(image)        
+        if image_extension in image_extensions: 
+            images_temp.append(image) 
+    images = images_temp      
 
     # add paths to images
     images = [os.path.join(images_path, image) for image in images]
